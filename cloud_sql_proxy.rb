@@ -23,6 +23,9 @@ class CloudSqlProxy < Formula
     end
 
     environment_variables csql_proxy_env_vars.to_h
+
+    log_path "#{HOMEBREW_PREFIX}/var/log/cloud_sql_proxy.log"
+    error_log_path "#{HOMEBREW_PREFIX}/var/log/cloud_sql_proxy.log"
   end
 
   test do
