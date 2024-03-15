@@ -12,6 +12,10 @@ class CloudSqlProxy < Formula
     system "go", "build", "-o", bin/"cloud_sql_proxy", "."
   end
 
+  def log_path
+    var/"log/#{name}.log"
+  end
+  
   service do
     run [opt_bin/"cloud_sql_proxy"]
     keep_alive true
@@ -24,8 +28,8 @@ class CloudSqlProxy < Formula
 
     environment_variables csql_proxy_env_vars.to_h
 
-    log_path var/"log/#{name}.log"
-    error_log_path var/"log/#{name}.log"
+    log_path f.log_path
+    error_log_path f.log_path
   end
 
   test do
